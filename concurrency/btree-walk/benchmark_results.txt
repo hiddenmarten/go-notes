@@ -1,0 +1,36 @@
+goos: linux
+goarch: amd64
+pkg: github.com/go-notes/concurrency/btree-walk
+cpu: 13th Gen Intel(R) Core(TM) i9-13900HX
+BenchmarkInvestigateTreeGeneral/Seq-d2-32         	       5	 200538857 ns/op	     227 B/op	       5 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d4-32         	       3	 401001801 ns/op	     408 B/op	       6 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d8-32         	       2	 802147222 ns/op	     328 B/op	       7 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d16-32        	       1	1605171180 ns/op	     456 B/op	       8 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d32-32        	       1	3210179174 ns/op	     712 B/op	       9 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d64-32        	       1	6419206047 ns/op	    1224 B/op	      10 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d128-32       	       1	12838009661 ns/op	    2248 B/op	      11 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d256-32       	       1	25672405277 ns/op	    4312 B/op	      13 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d512-32       	       1	51358057314 ns/op	    8936 B/op	      15 allocs/op
+BenchmarkInvestigateTreeGeneral/Seq-d1024-32      	       1	102698918043 ns/op	   25416 B/op	      15 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d2-32      	       5	 200561596 ns/op	     584 B/op	       9 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d4-32      	       3	 401057570 ns/op	     978 B/op	      15 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d8-32      	       2	 501678073 ns/op	    1856 B/op	      25 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d16-32     	       2	 702448943 ns/op	    2376 B/op	      42 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d32-32     	       1	1104008410 ns/op	    7336 B/op	      80 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d64-32     	       1	1103278106 ns/op	    9480 B/op	     150 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d128-32    	       1	1304218754 ns/op	   23080 B/op	     293 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d256-32    	       1	1806284742 ns/op	   46000 B/op	     595 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d512-32    	       1	2007044444 ns/op	   90152 B/op	    1115 allocs/op
+BenchmarkInvestigateTreeGeneral/NoPool-d1024-32   	       1	2310794951 ns/op	  204832 B/op	    2361 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d2-32        	       5	 200727046 ns/op	   28444 B/op	      44 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d4-32        	       3	 401717474 ns/op	   32138 B/op	      58 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d8-32        	       3	 401457731 ns/op	   29066 B/op	      52 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d16-32       	       2	 501857405 ns/op	   29584 B/op	      59 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d32-32       	       1	1003957789 ns/op	   31408 B/op	      79 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d64-32       	       1	1103953730 ns/op	   34224 B/op	     104 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d128-32      	       1	1505295902 ns/op	   32656 B/op	      78 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d256-32      	       1	1705948742 ns/op	   41136 B/op	     113 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d512-32      	       1	2308754962 ns/op	   38896 B/op	      81 allocs/op
+BenchmarkInvestigateTreeGeneral/Pool-d1024-32     	       1	4012974339 ns/op	   58704 B/op	     112 allocs/op
+PASS
+ok  	github.com/go-notes/concurrency/btree-walk	248.316s
