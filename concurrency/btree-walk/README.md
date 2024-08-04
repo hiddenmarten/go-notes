@@ -8,11 +8,6 @@ Benchmark run:
 go test -bench=. -benchmem -timeout 30m > benchmark_results.txt
 ```
 
-Plots generation:
-```shell
-go run plots.go
-```
-
 ### Description
 
 **Objective**: To compare the efficiency of a worker pool versus goroutines on demand in handling varying loads per operation.
