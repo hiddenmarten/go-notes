@@ -26,10 +26,18 @@ go run plots.go
 - Record overhead and useful load to evaluate efficiency.
 
 **Observations**:
-- **Small Load Per Operation**: Worker pools show better resource utilization than goroutines on demand. Overhead in the latter can exceed the useful load, making it less efficient.
-- **Large Load Per Operation**: Goroutines on demand are more efficient, showing better performance and resource utilization.
+- NoPool:
+  - With a small load per operation, goroutines on demand appear overhead can exceed the useful load.
+  - Number of `allocs/op` increases with depth of investigated tree.
+  - Number of `B/op` increases with depth of investigated tree.
+- Pool:
+  - Number of `allocs/op` barely change in this experiment for agent pool despite the changed payload.
+  - Number of `B/op` barely change in this experiment, except the point when tasks collect in the buffered channel.
 
-**Conclusion**:
-- Worker pools are beneficial in scenarios with a low and medium load per operation, requiring a buffered task channel for optimal performance.
-- Goroutines on demand are more efficient in high-load scenarios per operation.
-- Implementing a worker pool is more complex and requires scaling with increased load, potentially leading to more complex code. Automating scaling can help but adds to the complexity.
+Conclusions:
+- A worker pool utilizes resources more stable and predictable than goroutines on demand.
+- A worker pool requires a buffered task channel for effective operation.
+- A worker pool is more complex to implement.
+- A worker pool needs to be scaled according to increasing load, which can be automated, but this leads to even more complex code.
+- A no pool solution looks better with the "unlimited" resources 
+- With a large load per operation, goroutines on demand appear more efficient, at least in this experiment involving the deployment of binary trees where number of active task increases progressively.
