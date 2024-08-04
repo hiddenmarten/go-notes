@@ -5,11 +5,15 @@ import (
 	"time"
 )
 
+const poolWorkersCount = 64
+const tasksChanBufferSize = 1024
+
 // Task represents a tree node to be processed.
 type Task struct {
-	t  *Tree
-	ch chan int
-	wg *sync.WaitGroup
+	t       *Tree
+	ch      chan int
+	payload time.Duration
+	wg      *sync.WaitGroup
 }
 
 // WorkerPool manages a pool of goroutines to process tree nodes.
@@ -47,25 +51,25 @@ func (wp *WorkerPool) Stop() {
 func (wp *WorkerPool) worker() {
 	defer wp.wg.Done()
 	for task := range wp.tasks {
-		time.Sleep(pseudoPayload)
+		time.Sleep(task.payload)
 		task.ch <- task.t.Value
 		if task.t.Left != nil {
 			task.wg.Add(1)
-			wp.tasks <- Task{task.t.Left, task.ch, task.wg}
+			wp.tasks <- Task{task.t.Left, task.ch, task.payload, task.wg}
 		}
 		if task.t.Right != nil {
 			task.wg.Add(1)
-			wp.tasks <- Task{task.t.Right, task.ch, task.wg}
+			wp.tasks <- Task{task.t.Right, task.ch, task.payload, task.wg}
 		}
 		task.wg.Done()
 	}
 }
 
 // FillChannelFromTreePool uses a worker pool to walk the tree and fill the channel with its values.
-func FillChannelFromTreePool(t *Tree, ch chan int, pool *WorkerPool) {
+func FillChannelFromTreePool(t *Tree, ch chan int, payload time.Duration, pool *WorkerPool) {
 	var wg sync.WaitGroup
 	wg.Add(1)
-	pool.tasks <- Task{t, ch, &wg}
+	pool.tasks <- Task{t, ch, payload, &wg}
 	wg.Wait()
 	close(ch)
 }
