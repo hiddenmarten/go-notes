@@ -1,4 +1,4 @@
-module github.com/go-notes/concurrency/btree-walk
+module github.com/hiddenmarten/go-notes/concurrency/btree-walk
 
 go 1.22.5
 
