@@ -1,7 +1,7 @@
 //go:build tools
 // +build tools
 
-package lib
+package tools
 
 import (
 	_ "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
