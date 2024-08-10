@@ -8,4 +8,4 @@ import (
 	_ "google.golang.org/protobuf/cmd/protoc-gen-go"
 )
 
-//go:generate protoc --go_out=. --go-grpc_out=. proto/hello.proto
+//go:generate protoc --go_out=. --go-grpc_out=. hello.proto

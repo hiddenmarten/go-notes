@@ -1,4 +1,4 @@
-module github.com/hiddenmarten/go-notes/grpc/basic/lib
+module github.com/hiddenmarten/go-notes/grpc/basic/proto
 
 go 1.22.6
 
