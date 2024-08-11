@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"google.golang.org/grpc/credentials/insecure"
 	"log"
 	"os"
 	"time"
@@ -12,13 +13,12 @@ import (
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-
-	c := pb.NewGreeterClient(conn)
+	client := pb.NewGreeterClient(conn)
 
 	name := "world"
 	if len(os.Args) > 1 {
@@ -28,7 +28,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+	r, err := client.SayHello(ctx, &pb.HelloRequest{Name: name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
